@@ -100,8 +100,8 @@ function CodePreview() {
         </div>
       </div>
       {/* Code content */}
-      <div className="p-6 font-mono text-sm leading-relaxed overflow-x-auto">
-        <pre className="text-green-400/90">
+      <div className="p-4 sm:p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
+        <pre className="text-green-400/90 whitespace-pre-wrap sm:whitespace-pre">
           <code>{codeSnippets[activeTab].code}</code>
         </pre>
       </div>
@@ -111,6 +111,7 @@ function CodePreview() {
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -123,7 +124,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-neutral-200" : ""}`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || mobileMenuOpen ? "bg-background/95 backdrop-blur-sm border-b border-neutral-200" : ""}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             <div className="flex items-center gap-2">
@@ -131,15 +132,46 @@ export default function Home() {
                 Token<span className="text-accent-primary">AI</span>
               </span>
             </div>
+            
+            {/* Desktop nav */}
             <div className="hidden sm:flex items-center gap-8">
               <a href="#features" className="text-sm font-medium text-foreground-muted hover:text-foreground transition-colors">功能</a>
               <a href="#pricing" className="text-sm font-medium text-foreground-muted hover:text-foreground transition-colors">定价</a>
               <a href="https://docs.tokenai.dev" className="text-sm font-medium text-foreground-muted hover:text-foreground transition-colors">文档</a>
             </div>
-            <a href="https://console.tokenai.dev/signup" className="btn-primary px-5 py-2 text-xs inline-block">
-              开始使用
-            </a>
+            
+            <div className="flex items-center gap-4">
+              <a href="https://console.tokenai.dev/signup" className="btn-primary px-4 py-2 text-xs inline-block">
+                开始使用
+              </a>
+              
+              {/* Mobile menu button */}
+              <button 
+                className="sm:hidden p-2 -mr-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {mobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
+          
+          {/* Mobile menu */}
+          {mobileMenuOpen && (
+            <div className="sm:hidden py-4 border-t border-neutral-200">
+              <div className="flex flex-col gap-4">
+                <a href="#features" className="text-base font-medium text-foreground-muted hover:text-foreground transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>功能</a>
+                <a href="#pricing" className="text-base font-medium text-foreground-muted hover:text-foreground transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>定价</a>
+                <a href="https://docs.tokenai.dev" className="text-base font-medium text-foreground-muted hover:text-foreground transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>文档</a>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -290,20 +322,20 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-3 gap-8 sm:gap-4">
             {[
               { step: "1", title: "注册账号", desc: "邮箱验证，即刻开通，无需绑定信用卡" },
               { step: "2", title: "创建密钥", desc: "在控制台生成 API Key，支持多项目隔离" },
               { step: "3", title: "开始调用", desc: "替换 base URL 和 API Key，无需修改业务代码" }
             ].map((item, idx) => (
-              <div key={idx} className="relative text-center">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center border-2 border-foreground text-xl font-display font-bold">
+              <div key={idx} className="relative text-center px-4">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 flex items-center justify-center border-2 border-foreground text-lg sm:text-xl font-display font-bold">
                   {item.step}
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                 <p className="text-sm text-foreground-muted">{item.desc}</p>
                 {idx < 2 && (
-                  <div className="hidden sm:block absolute top-8 left-full w-full h-px bg-neutral-300" />
+                  <div className="hidden sm:block absolute top-7 sm:top-8 left-full w-full h-px bg-neutral-300" />
                 )}
               </div>
             ))}
@@ -322,7 +354,7 @@ export default function Home() {
             无最低消费，无隐藏费用。按实际调用量付费，价格与官方持平或更低。
           </p>
           
-          <div className="inline-flex flex-col sm:flex-row items-stretch gap-4 sm:gap-0 bg-white border border-neutral-200 p-1">
+          <div className="inline-flex flex-col sm:flex-row items-stretch gap-0 bg-white border border-neutral-200 divide-y sm:divide-y-0 sm:divide-x divide-neutral-200">
             <div className="px-8 py-4 text-center sm:text-left">
               <div className="text-xs uppercase tracking-widest text-foreground-muted mb-1">Free</div>
               <div className="text-2xl font-semibold">¥0</div>
