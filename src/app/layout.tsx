@@ -17,7 +17,7 @@ const sora = Sora({
 
 export const metadata: Metadata = {
   title: "词元爱 TokenAI - AI Token Exchange",
-  description: "词元爱 TokenAI - 面向开发者的统一 AI API 聚合中转站",}
+  description: "词元爱 TokenAI - 面向开发者的统一 AI API 聚合中转站",
   icons: {
     icon: {
       url: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>",
