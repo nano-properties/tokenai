@@ -129,7 +129,7 @@ export default function Home() {
           <div className="flex items-center justify-between h-16 sm:h-20">
             <div className="flex items-center gap-2">
               <span className="text-xl sm:text-2xl font-display font-bold tracking-tight">
-                Token<span className="text-accent-primary">AI</span>
+                词元爱 <span className="text-accent-primary">TokenAI</span>
               </span>
             </div>
             
@@ -426,7 +426,7 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="text-xl font-display font-bold mb-4">
-                Token<span className="text-accent-primary">AI</span>
+                词元爱 <span className="text-accent-primary">TokenAI</span>
               </div>
               <p className="text-sm text-foreground-muted">
                 统一的 AI API 聚合平台，让开发者专注于创造价值。
