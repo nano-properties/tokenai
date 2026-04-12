@@ -188,9 +188,7 @@ export default function Home() {
 
               {/* Main headline */}
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-display font-bold mb-8 leading-none">
-                One Token.
-                <br />
-                <span className="italic text-accent-primary">All AI Models.</span>
+                一把钥匙，无限智能
               </h1>
 
               {/* Subhead */}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Sora } from "next/font/google";
+import { Playfair_Display, Sora, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -13,6 +13,12 @@ const sora = Sora({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const notoSansSC = Noto_Sans_SC({
+  variable: "--font-chinese",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,9 +37,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${playfair.variable} ${sora.variable} h-full antialiased`}
+      <html
+      lang="zh-CN"
+      className={`${playfair.variable} ${sora.variable} ${notoSansSC.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
